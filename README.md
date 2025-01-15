@@ -1,6 +1,6 @@
 # 在线简历生成器 (Resume Generator)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/resume-generator)
+![img](https://github.com/user-attachments/assets/82f1bd8a-4768-4754-a7f3-58701d201670)
 
 一个现代化的在线简历生成器，支持实时预览、多种模板和导出功能。使用纯前端技术构建，无需后端服务器。
 
@@ -87,6 +87,7 @@
    - 创意设计：适合设计类岗位
 
 ## 🚀 部署到 Vercel
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/resume-generator)
 
 1. Fork 本仓库
 2. 在 Vercel 上导入项目
