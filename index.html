@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线简历生成器</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="editor">
+            <div class="header">
+                <h1>简历生成器</h1>
+                <div class="template-selector">
+                    <label>选择模板：</label>
+                    <select id="template-select">
+                        <option value="classic">经典模板</option>
+                        <option value="modern">现代简约</option>
+                        <option value="professional">专业商务</option>
+                        <option value="minimalist">简约时尚</option>
+                        <option value="elegant">商务精英</option>
+                        <option value="creative">创意设计</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- 基本信息部分 -->
+            <div class="section" data-type="basic">
+                <h2>基本信息</h2>
+                <div class="form-group">
+                    <label>姓名:</label>
+                    <input type="text" class="name" placeholder="请输入您的姓名">
+                </div>
+                <div class="form-group">
+                    <label>电话:</label>
+                    <input type="tel" class="phone" placeholder="请输入您的联系电话">
+                </div>
+                <div class="form-group">
+                    <label>邮箱:</label>
+                    <input type="email" class="email" placeholder="请输入您的电子邮箱">
+                </div>
+                <div class="form-group">
+                    <label>地址:</label>
+                    <input type="text" class="address" placeholder="请输入您的地址">
+                </div>
+                <div class="form-group">
+                    <label>个人简介:</label>
+                    <textarea class="summary" placeholder="请输入您的个人简介"></textarea>
+                </div>
+            </div>
+
+            <!-- 板块控制 -->
+            <div class="section-controls">
+                <div class="button-group">
+                    <button class="save-resume">保存简历</button>
+                    <button class="load-resume">加载简历</button>
+                </div>
+                <div class="add-section-group">
+                    <button class="add-section" data-type="experience">添加工作经验</button>
+                    <button class="add-section" data-type="education">添加教育背景</button>
+                    <button class="add-section" data-type="skills">添加技能</button>
+                    <button class="add-section" data-type="projects">添加项目经历</button>
+                    <button class="add-section" data-type="custom">添加自定义板块</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview">
+            <h2>简历预览</h2>
+            <div class="markdown-preview"></div>
+            <div class="preview-actions">
+                <button class="copy-md">复制Markdown</button>
+                <button class="export-resume">导出简历</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导出选项弹窗 -->
+    <div id="exportModal" class="export-modal">
+        <div class="modal-content">
+            <h3>选择导出格式</h3>
+            <div class="export-options">
+                <button class="export-option" data-format="markdown">
+                    <span class="icon">📝</span>
+                    <span class="text">
+                        <strong>Markdown 格式</strong>
+                        <small>导出为纯文本格式，方便编辑和分享</small>
+                    </span>
+                </button>
+                <button class="export-option" data-format="word">
+                    <span class="icon">📄</span>
+                    <span class="text">
+                        <strong>Word 文档</strong>
+                        <small>导出为 Word 格式，支持打印和编辑</small>
+                    </span>
+                </button>
+            </div>
+            <button class="close-modal">取消</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

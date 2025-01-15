@@ -1,0 +1,825 @@
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --background-color: #f8fafc;
+    --text-color: #1e293b;
+    --border-color: #e2e8f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.editor, .preview {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 0.75rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    background: white;
+    position: relative;
+    z-index: 1;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px dashed var(--border-color);
+    border-radius: 0.25rem;
+    background: var(--background-color);
+    position: relative;
+}
+
+.section h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    padding-right: 4rem;
+    cursor: move;
+    user-select: none;
+}
+
+.section-content {
+    position: relative;
+    background: white;
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.delete-section {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    font-size: 0.8rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.delete-section:hover {
+    background: #fecaca;
+    color: #b91c1c;
+    transform: translateY(-1px);
+}
+
+.section-controls {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.add-section-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.add-section {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    border: 2px dashed var(--border-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 3rem;
+}
+
+.add-section:hover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    flex: 1 1 auto;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+/* 技能板块样式优化 */
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.skill-item {
+    background: white;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.skill-item .form-group {
+    margin-bottom: 0;
+    padding-right: 3rem; /* 为删除按钮留出空间 */
+}
+
+.skill-item textarea {
+    min-height: 80px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.remove-skill {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.5rem;
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    font-size: 0.8rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.remove-skill:hover {
+    background: #fecaca;
+    color: #b91c1c;
+    transform: translateY(-1px);
+}
+
+.add-skill {
+    width: 100%;
+    margin-top: 0.5rem;
+    background: var(--background-color);
+    color: var(--primary-color);
+    border: 2px dashed var(--border-color);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-skill:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* 预览区样式 */
+.markdown-preview {
+    background: var(--background-color);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    min-height: 400px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow: auto;
+    line-height: 1.6;
+    color: var(--text-color);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.markdown-preview h1 {
+    color: var(--primary-color);
+    margin: 0.75rem 0 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.25rem;
+    font-size: 1.75rem;
+}
+
+.markdown-preview h2 {
+    color: var(--primary-color);
+    margin: 1rem 0 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.25rem;
+    font-size: 1.35rem;
+}
+
+.markdown-preview h3 {
+    color: var(--primary-color);
+    margin: 0.75rem 0 0.35rem;
+    font-size: 1.15rem;
+}
+
+.markdown-preview p {
+    margin: 0.35rem 0;
+    color: var(--text-color);
+}
+
+.markdown-preview ul,
+.markdown-preview ol {
+    padding-left: 1.5rem;
+    margin: 0.35rem 0;
+}
+
+.markdown-preview li {
+    margin: 0.15rem 0;
+    padding: 0;
+}
+
+/* 调整基本信息部分的样式 */
+.markdown-preview h1 + ul,
+.markdown-preview h1 + p {
+    margin-top: 0.5rem;
+}
+
+/* 调整工作经验和项目经历的样式 */
+.markdown-preview h3 + p,
+.markdown-preview h2 + p {
+    margin-top: 0.25rem;
+}
+
+/* 调整技能列表的样式 */
+.markdown-preview h2 + ul {
+    margin-top: 0.35rem;
+}
+
+.markdown-preview ul + h2,
+.markdown-preview p + h2 {
+    margin-top: 1rem;
+}
+
+.markdown-preview strong {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.markdown-preview em {
+    font-style: italic;
+    color: var(--text-color);
+}
+
+.markdown-preview a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.markdown-preview a:hover {
+    text-decoration: underline;
+}
+
+.markdown-preview blockquote {
+    border-left: 4px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    color: #666;
+    background-color: #f9f9f9;
+}
+
+.markdown-preview code {
+    font-family: 'Courier New', monospace;
+    background-color: #f5f5f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.markdown-preview pre {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow: auto;
+    margin: 1rem 0;
+}
+
+.markdown-preview pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Drag and Drop Styles */
+[draggable="true"] {
+    cursor: move;
+}
+
+.dragging {
+    opacity: 0.8;
+    transform: scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    body {
+        padding: 1rem;
+    }
+
+    .preview-toggle {
+        display: flex;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .preview {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        background: white;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        padding: 1rem;
+        overflow-y: auto;
+    }
+
+    .preview.active {
+        transform: translateX(0);
+    }
+
+    .preview-toggle {
+        display: none;
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 1001;
+        width: 3.5rem;
+        height: 3.5rem;
+        padding: 0;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .preview-toggle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* 美化输入框样式 */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* 添加过渡动画 */
+.section {
+    transition: all 0.3s ease;
+}
+
+.section:hover {
+    border-color: var(--primary-color);
+}
+
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+button:active::after {
+    width: 200%;
+    height: 200%;
+}
+
+/* 打印样式优化 */
+@media print {
+    body {
+        padding: 0;
+        background: white;
+    }
+
+    .container {
+        display: block;
+    }
+
+    .editor, .section-controls, .preview h2, .copy-md {
+        display: none;
+    }
+
+    .preview {
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .markdown-preview {
+        padding: 1cm;
+        line-height: 1.5;
+    }
+}
+
+/* 添加加载动画 */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* 通知样式 */
+.notification {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1002;
+}
+
+.notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* 模板选择器样式优化 */
+.template-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--background-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.template-selector label {
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.template-selector select {
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234B5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 0.5rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    min-width: 160px;
+}
+
+.template-selector select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.template-selector select:hover {
+    border-color: var(--primary-color);
+}
+
+/* 预览区域标题样式优化 */
+.preview h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.preview h2::before {
+    content: '👁';
+    font-size: 1.2rem;
+}
+
+/* 预览操作按钮样式 */
+.preview-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.preview-actions button {
+    min-width: 120px;
+}
+
+/* 保存和加载按钮样式 */
+.save-resume,
+.load-resume {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    flex: 1;
+}
+
+.save-resume:hover,
+.load-resume:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* 导出弹窗样式 */
+.export-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.export-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.export-modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content h3 {
+    margin: 0 0 1.5rem 0;
+    color: #2D3748;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.modal-content .export-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.export-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: #F7FAFC;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.export-option .text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.export-option .text strong {
+    color: #2D3748;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.export-option .text small {
+    color: #718096;
+    font-size: 0.875rem;
+}
+
+.export-option:hover {
+    background: #EDF2F7;
+    border-color: #4A5568;
+    transform: translateY(-1px);
+}
+
+.export-option:hover .text strong {
+    color: #1A202C;
+}
+
+.export-option:hover .text small {
+    color: #4A5568;
+}
+
+.export-option .icon {
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.export-option:hover .icon {
+    opacity: 1;
+}
+
+.close-modal {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background: #EDF2F7;
+    border: none;
+    border-radius: 6px;
+    color: #4A5568;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+}
+
+.close-modal:hover {
+    background: #E2E8F0;
+}
+
+/* 添加动画关键帧 */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* 修改打印样式，确保PDF导出时的正确显示 */
+@media print {
+    @page {
+        margin: 1cm;
+    }
+
+    body {
+        padding: 0;
+        background: white;
+    }
+
+    .container {
+        display: block;
+    }
+
+    .editor, .section-controls, .preview h2, .preview-actions, .export-modal {
+        display: none !important;
+    }
+
+    .preview {
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .markdown-preview {
+        padding: 0;
+    }
+}
